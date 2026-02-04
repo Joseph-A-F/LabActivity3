@@ -1,5 +1,6 @@
 package edu.temple.helloworld
 
+import android.app.Notification
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -8,8 +9,10 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
+
     // Declare view properties - the first one is done for you
     lateinit var displayTextView: TextView
+    lateinit var textbox: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,10 +20,14 @@ class MainActivity : AppCompatActivity() {
 
         // Initialize with views defined in Layout - the first one is done for you
         displayTextView = findViewById(R.id.displayTextView)
-
+        textbox = findViewById<EditText>(R.id.nameEditText)
         
         findViewById<Button>(R.id.clickMeButton).setOnClickListener {
-            displayTextView.text = "Hello, ${findViewById<EditText>(R.id.nameEditText).text}"
+            if (textbox.text.length > 0){
+                displayTextView.text = "Hello, ${textbox.text}"
+            }else{
+                displayTextView.text = "Please write your name in the textbox."
+            }
         }
 
 
